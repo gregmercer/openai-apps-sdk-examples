@@ -31,3 +31,26 @@ Copy command example:
 ```bash
 cp assets/test*.* src/test_server_python/static/
 ```
+
+## Running the server locally
+
+Use the following command from the top folder:
+```
+uv run test_server_python/main.py
+```
+
+## Deploying
+
+I've been using the Render.com to deploy this MCP server. For testing , you can use a -free- account to create a Web Service.
+
+# Config settings:
+
+Use the following for the 'Build Command'
+```
+uv sync
+```
+
+Use the following for the start command:
+```
+uv run test_server_python/main.py
+```
