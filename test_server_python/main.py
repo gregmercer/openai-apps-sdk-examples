@@ -38,8 +38,8 @@ widgets: List[TestWidget] = [
         invoked="Rendered test",
         html=(
             f"<div id=\"test-root\"></div>\n"
-            f"<link rel=\"stylesheet\" href=\"https://openai-apps-test.onrender.com/static/test-2d2b.css\">\n"
-            f"<script type=\"module\" src=\"https://openai-apps-test.onrender.com/static/test-2d2b.js\"></script>"
+            f"<link rel=\"stylesheet\" href=\"https://<your-server-url-here>/static/test-2d2b.css\">\n"
+            f"<script type=\"module\" src=\"https://<your-server-url-here>/static/test-2d2b.js\"></script>"
         ),
         response_text="Rendered test component!",
     ),
