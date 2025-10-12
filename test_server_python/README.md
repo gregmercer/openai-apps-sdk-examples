@@ -1,12 +1,6 @@
 ## Known issues:
-I haven't been able to get these two calls to work from the 'test' widget.
+I haven't been able to get this to work yet in the 'test' widget.
 ```
-  const helloAgain = async () => {
-    await window.openai.sendFollowUpMessage({ "prompt": "can you show the test app again with the title 'hello again.'" });
-    // todo: using callTool isn't working for me yet.
-    //await window.openai.callTool("test-tool", { "title_text": "hi again. :)" });
-  };
-
   const gotoDoc = async () => {
     // todo: this isn't working for me yet.
     window.openai.openExternal({ "payload": "https://developers.openai.com/apps-sdk" });

@@ -1,7 +1,8 @@
 import React from "react";
 import { useWidgetProps } from "../use-widget-props";
+import { useWidgetState } from "../use-widget-state";
 import { useDisplayMode } from "../use-display-mode";
-
+import { useEffect } from "react";
 
 const ExpandIcon = () => {
   return (
@@ -19,14 +20,30 @@ const ExpandIcon = () => {
 
 export function App() {
   const widgetProps = useWidgetProps() || {};
-  const title_text = widgetProps.result?.structuredContent?.title_text ?? '';
+  const { title_text = 'hi' } = widgetProps;
   const displayMode = useDisplayMode();
   const maxHeight = "100vh";
 
+  const [titleText, setTitleText] = useWidgetState(title_text);
+  const [isLoading, setIsLoading] = useWidgetState(false);
+
+  useEffect(() => {
+    setTitleText(title_text);
+  }, [title_text, setTitleText]);
+
   const helloAgain = async () => {
-    await window.openai.sendFollowUpMessage({ "prompt": "can you show the test app again with the title 'hello again.'" });
-    // todo: using callTool isn't working for me yet.
-    //await window.openai.callTool("test-tool", { "title_text": "hi again. :)" });
+    //await window.openai.sendFollowUpMessage({ "prompt": "can you show the test app again with the title 'hello again.'" });
+    setIsLoading(true);
+    try {
+      const reply = await window.openai.callTool("test-tool", {
+        "title_text": "hi again. :)"
+      });
+      if (reply?.structuredContent?.title_text) {
+        setTitleText(reply.structuredContent.title_text);
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const gotoDoc = async () => {
@@ -63,9 +80,10 @@ export function App() {
         fontSize: '18px',
         fontWeight: 'bold'
       }}>
-        <div>{title_text || 'hi'}</div>
+        <div>{titleText || 'hi'}</div>
         <button
           onClick={helloAgain}
+          disabled={isLoading}
           style={{
             marginTop: '10px',
             padding: '8px 16px',
@@ -74,10 +92,11 @@ export function App() {
             backgroundColor: 'green',
             color: 'white',
             border: 'none',
-            borderRadius: '4px'
+            borderRadius: '4px',
+            cursor: isLoading ? 'wait' : 'pointer'
           }}
         >
-          Say Hello Again
+          {isLoading ? 'Loading...' : 'Say hello again'}
         </button>
         <button
           onClick={gotoDoc}
