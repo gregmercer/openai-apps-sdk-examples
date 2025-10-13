@@ -46,9 +46,8 @@ export function App() {
     }
   };
 
-  const gotoDoc = async () => {
-    // todo: this isn't working for me yet.
-    window.openai.openExternal({ "payload": "https://developers.openai.com/apps-sdk" });
+  const gotoDoc = () => {
+    window.openai.openExternal({ href: "https://developers.openai.com/apps-sdk" });
   };
 
   return (
@@ -88,7 +87,6 @@ export function App() {
             marginTop: '10px',
             padding: '8px 16px',
             fontSize: '14px',
-            cursor: 'pointer',
             backgroundColor: 'green',
             color: 'white',
             border: 'none',
