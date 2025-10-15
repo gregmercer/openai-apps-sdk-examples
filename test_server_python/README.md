@@ -1,12 +1,3 @@
-## Known issues:
-I haven't been able to get this to work yet in the 'test' widget.
-```
-  const gotoDoc = async () => {
-    // todo: this isn't working for me yet.
-    window.openai.openExternal({ "payload": "https://developers.openai.com/apps-sdk" });
-  };
-```
-
 ## Static files are used from the /static path on the MCP server
 
 After running ```pnpm run build``` you need to copy all the test*.* files in the /assets directory to the /static folder under this server.
