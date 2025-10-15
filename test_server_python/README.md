@@ -24,6 +24,21 @@ Use the following command from the top folder:
 uv run test_server_python/main.py
 ```
 
+## Verifying the server locally
+
+Use MCP inspector by running the following command:
+```
+npx @modelcontextprotocol/inspector
+```
+Then when the inspector opens in your browser add the following settings:
+```
+Tranport Type: Streamable HTTP
+URL = http://0.0.0.0:8000/mcp
+Connection Type: Direct
+```
+Click Connect or Reconnect. Once connected you can list to tools, resources, and templates.
+
+
 ## Deploying
 
 I've been using the Render.com to deploy this MCP server. For testing , you can use a -free- account to create a Web Service.
